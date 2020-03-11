@@ -1,0 +1,21 @@
+version: "3.7"
+services: 
+    web_ci:
+        container_name: web_ci
+        build:
+            context: ./app
+            dockerfile: Dockerfile
+        image: sireno_app:beta
+        working_dir: /var/www/html/
+        volumes: 
+            - ./app/:/var/www/html
+            - ./config/php/php.ini:/usr/local/etc/php/conf.d/php.ini
+        ports: 
+            - 6040:80
+        networks: 
+            - network_sireno
+
+networks: 
+    network_sireno:
+        name: network_sireno
+        
